@@ -1,0 +1,124 @@
+version: 2
+
+models:
+  - name: employees_by_department
+    description: "List all employees for each department with their first name, last name, emp no, dept no & name."
+    columns:
+      - name: emp_no
+        description: "Unique identifier for each employee."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: first_name
+        description: "The first name of the employee."
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the employee."
+        tests:
+          - not_null
+      - name: dept_no
+        description: "Unique identifier for each department."
+        tests:
+          - not_null
+      - name: dept_name
+        description: "The name of the department."
+        tests:
+          - not_null
+
+  - name: highest_salaried_employees
+    description: "List the highest salaried employees for each department."
+    columns:
+      - name: emp_no
+        description: "Unique identifier for each employee."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: first_name
+        description: "The first name of the employee."
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the employee."
+        tests:
+          - not_null
+      - name: dept_no
+        description: "Unique identifier for each department."
+        tests:
+          - not_null
+      - name: salary
+        description: "The salary of the employee."
+        tests:
+          - not_null
+
+  - name: employees_without_manager
+    description: "List all employees that don't have a manager."
+    columns:
+      - name: emp_no
+        description: "Unique identifier for each employee."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: first_name
+        description: "The first name of the employee."
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the employee."
+        tests:
+          - not_null
+
+  - name: self_managed_employees
+    description: "List all employees who are their own manager."
+    columns:
+      - name: emp_no
+        description: "Unique identifier for each employee."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: first_name
+        description: "The first name of the employee."
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the employee."
+        tests:
+          - not_null
+      - name: dept_no
+        description: "Unique identifier for each department."
+        tests:
+          - not_null
+
+  - name: employees_hired_before_manager
+    description: "List all employees who have been hired prior to their manager."
+    columns:
+      - name: emp_no
+        description: "Unique identifier for each employee."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: first_name
+        description: "The first name of the employee."
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the employee."
+        tests:
+          - not_null
+      - name: hire_date
+        description: "The hire date of the employee."
+        tests:
+          - not_null
+      - name: manager_emp_no
+        description: "Unique identifier for the manager."
+        tests:
+          - not_null
+      - name: manager_hire_date
+        description: "The hire date of the manager."
+        tests:
+          - not_null

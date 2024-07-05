@@ -1,0 +1,142 @@
+version: 2
+
+models:
+  - name: stg_employees
+    description: "This staging table contains employee data."
+    columns:
+      - name: emp_no
+        description: "Unique identifier for each employee."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: birth_date
+        description: "The birth date of the employee."
+        tests:
+          - not_null
+      - name: first_name
+        description: "The first name of the employee."
+        tests:
+          - not_null
+      - name: last_name
+        description: "The last name of the employee."
+        tests:
+          - not_null
+      - name: gender
+        description: "The gender of the employee."
+        tests:
+          - not_null
+      - name: hire_date
+        description: "The hire date of the employee."
+        tests:
+          - not_null
+
+  - name: stg_departments
+    description: "This staging table contains department data."
+    columns:
+      - name: dept_no
+        description: "Unique identifier for each department."
+        tests:
+          - not_null
+          - unique
+      - name: dept_name
+        description: "The name of the department."
+        tests:
+          - not_null
+
+  - name: stg_dept_emp
+    description: "This staging table contains employee department data."
+    columns:
+      - name: emp_no
+        description: "Employee number."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: dept_no
+        description: "Department number."
+        tests:
+          - not_null
+      - name: from_date
+        description: "Start date of the employee in the department."
+        tests:
+          - not_null
+      - name: to_date
+        description: "End date of the employee in the department."
+        tests:
+          - not_null
+
+  - name: stg_dept_manager
+    description: "This staging table contains department manager data."
+    columns:
+      - name: emp_no
+        description: "Employee number of the manager."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: dept_no
+        description: "Department number."
+        tests:
+          - not_null
+      - name: from_date
+        description: "Start date of the manager in the department."
+        tests:
+          - not_null
+      - name: to_date
+        description: "End date of the manager in the department."
+        tests:
+          - not_null
+
+  - name: stg_titles
+    description: "This staging table contains employee title data."
+    columns:
+      - name: emp_no
+        description: "Employee number."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: title
+        description: "Job title of the employee."
+        tests:
+          - not_null
+      - name: from_date
+        description: "Start date of the title."
+        tests:
+          - not_null
+      - name: to_date
+        description: "End date of the title."
+        tests:
+          - not_null
+
+  - name: stg_salaries
+    description: "This staging table contains employee salary data."
+    columns:
+      - name: emp_no
+        description: "Employee number."
+        tests:
+          - not_null
+          - unique
+          - min_length_5_digits
+      - name: salary
+        description: "Salary of the employee."
+        tests:
+          - not_null
+      - name: from_date
+        description: "Start date of the salary."
+        tests:
+          - not_null
+      - name: to_date
+        description: "End date of the salary."
+        tests:
+          - not_null
+
+tests:
+  - name: test_manager_assignment
+    description: "Ensure each department has at most one manager"
+    model: stg_dept_manager
+    test:
+      unique:
+        column_name: dept_no
+
